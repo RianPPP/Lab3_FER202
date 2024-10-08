@@ -1,6 +1,7 @@
 import './App.css';
 import { Card, Carousel, Container, Row, Navbar, NavDropdown, Nav, Form, Button, Col, Table } from 'react-bootstrap';
 import { FaFacebookF, FaTwitter, FaInstagram, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import CartSection from "./components/CartSection" ;
 
 import pizza1 from './images/pizza1.jpg';
 import pizza2 from './images/pizza2.jpg';
@@ -254,6 +255,8 @@ function App() {
             </footer>
           </Row>
 
+
+          <CartSection />
         </div>
       </Container>
     </>

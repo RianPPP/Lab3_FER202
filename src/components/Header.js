@@ -1,5 +1,5 @@
 // Header.js
-import React from 'react';
+
 import { Badge, Button } from 'react-bootstrap';
 
 const Header = ({ cartItems, openCart }) => {
