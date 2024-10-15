@@ -1,7 +1,7 @@
 import './App.css';
+import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CartSection from "./components/CartSection" ;
-import NavbarCpn from "./components/Navbar";
+import Narbar from "./components/Navbar";
 import Slider from "./components/Slider";
 import Menu from "./components/Menu";
 import Reserv from "./components/Reserv";
@@ -18,7 +18,7 @@ import Footer from "./components/Footer";
 //           {/* Nav */}
 //           {/* This is Slider part */}
 //           <Row>
-            
+
 //           </Row>
 
 //           {/* This is Menu part */}
@@ -197,18 +197,36 @@ import Footer from "./components/Footer";
 // export default App;
 
 function App() {
+  const [cartItems, setCartItems] = useState([]); // Manage the cart
+
+
+  // Function to add pizza to cart
+  const addToCart = (pizza) => {
+    const existingItem = cartItems.find(item => item.name === pizza.title);
+    if (existingItem) {
+      // If pizza already exists in the cart, increase quantity
+      setCartItems(cartItems.map(item =>
+        item.name === pizza.title ? { ...item, quantity: item.quantity + 1 } : item
+      ));
+    } else {
+      // If pizza is new to cart, add it
+      setCartItems([...cartItems, { name: pizza.title, quantity: 1 }]);
+    }
+  };
+
   return (
     <Router>
       <div className="bg-dark">
-        <NavbarCpn />
+        <Narbar cartItems={cartItems} setCartItems={setCartItems} />
         <Routes>
           <Route path="/" element={
             <>
               <Slider />
-              <Menu />
+              <Menu addToCart={addToCart} /> {/*chuyen addToCart qua CardComponent*/}
               <Reserv />
             </>
-          } />
+          }
+          />
         </Routes>
         <Footer />
       </div>
